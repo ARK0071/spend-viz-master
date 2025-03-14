@@ -57,7 +57,7 @@ const DataSourceChart: React.FC<DataSourceChartProps> = ({
                   formatter={(value: number) => formatCurrency(value, showMillions)}
                 />
                 <Legend />
-                <Bar dataKey="BSEG" fill="#3498DB" name="BSEG" />
+                <Bar dataKey="BSEG" fill="#5CAADE" name="BSEG" />
               </BarChart>
             </ResponsiveContainer>
           </div>

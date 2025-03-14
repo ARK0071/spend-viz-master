@@ -4,8 +4,11 @@ import React from 'react';
 const SpendHQLogo: React.FC = () => {
   return (
     <div className="flex items-center">
-      <span className="text-brand-blue text-2xl font-bold">Spend</span>
-      <span className="text-brand-red text-2xl font-bold">HQ</span>
+      <img 
+        src="/lovable-uploads/e810d146-9290-43fa-9f00-bf3988912c35.png" 
+        alt="SpendHQ Logo" 
+        className="h-9" 
+      />
     </div>
   );
 };

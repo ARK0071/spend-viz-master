@@ -63,12 +63,30 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom theme colors
-				'brand-blue': '#0E5A8A',
-				'brand-red': '#E74C3C',
-				'chart-blue': '#3498DB',
-				'chart-light-blue': '#85C1E9',
-				'chart-dark-blue': '#1A5276',
+				// Custom theme colors based on requested palette
+				'brand': {
+					'blue-dark': '#013B80',
+					'blue-medium': '#4AA3BC',
+					'blue-light': '#5CAADE',
+					'blue-lightest': '#AFDAF5',
+					'gray-dark': '#363535',
+					'gray-light': '#EFF0F1',
+					'green-dark': '#0EA062',
+					'green-light': '#6BEAB5',
+					'orange-medium': '#ED815F',
+					'orange-light': '#FBA589',
+					'orange-dark': '#E94D1C',
+					'purple-dark': '#93499C',
+					'purple-light': '#E4C6DF',
+					'yellow-dark': '#DAD323',
+					'yellow-light': '#EFEEB4',
+				},
+				// Original brand colors maintained for backward compatibility
+				'brand-blue': '#013B80',
+				'brand-red': '#E94D1C',
+				'chart-blue': '#5CAADE',
+				'chart-light-blue': '#AFDAF5',
+				'chart-dark-blue': '#013B80',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -98,7 +116,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			},
 			fontFamily: {
-				sans: ['Inter', 'system-ui', 'sans-serif'],
+				sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+				aptos: ['Aptos', 'system-ui', 'sans-serif'],
 			}
 		}
 	},

@@ -11,15 +11,16 @@ import VendorPieChart from "@/components/VendorPieChart";
 import { useMonthlySpendData, useTopVendors, useNoVendorSpend } from "@/hooks/use-spend-data";
 import { toast } from "@/components/ui/use-toast";
 import { formatCurrency } from '@/services/api';
+import { DateRange } from "react-day-picker";
 
 const Index = () => {
   const [showMillions, setShowMillions] = useState(true);
-  const [dateRange, setDateRange] = useState<{ from?: Date; to?: Date }>({});
+  const [dateRange, setDateRange] = useState<DateRange | undefined>();
   
   // Convert date range to string format for API filtering
   const dateFilters = {
-    startDate: dateRange.from ? dateRange.from.toISOString().substring(0, 7) : undefined,
-    endDate: dateRange.to ? dateRange.to.toISOString().substring(0, 7) : undefined,
+    startDate: dateRange?.from ? dateRange.from.toISOString().substring(0, 7) : undefined,
+    endDate: dateRange?.to ? dateRange.to.toISOString().substring(0, 7) : undefined,
   };
   
   // Fetch data with react-query
@@ -28,7 +29,7 @@ const Index = () => {
   const { data: noVendorData = [], isLoading: isLoadingNoVendor } = useNoVendorSpend();
   
   // Handle date range changes
-  const handleDateRangeChange = (range: { from?: Date; to?: Date }) => {
+  const handleDateRangeChange = (range: DateRange | undefined) => {
     setDateRange(range);
   };
   
@@ -73,7 +74,7 @@ const Index = () => {
       <Header onExport={handleExport} />
       
       <main className="flex-1 dashboard-container">
-        <h1 className="text-3xl font-bold mb-6 text-center">Data Validation Summary</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center text-brand-blue">Data Validation Summary</h1>
         
         <Filters
           onDateRangeChange={handleDateRangeChange}

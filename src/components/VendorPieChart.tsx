@@ -29,7 +29,8 @@ const prepareChartData = (vendors: VendorData[]) => {
   ];
 };
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#AAAAAA'];
+// Updated colors to match our brand
+const COLORS = ['#013B80', '#4AA3BC', '#5CAADE', '#AFDAF5', '#ED815F', '#FBA589'];
 
 const VendorPieChart: React.FC<VendorPieChartProps> = ({
   data,

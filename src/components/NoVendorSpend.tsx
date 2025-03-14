@@ -10,7 +10,8 @@ interface NoVendorSpendProps {
   showMillions: boolean;
 }
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+// Use our new branded colors
+const COLORS = ['#5CAADE', '#AFDAF5', '#ED815F', '#FBA589'];
 
 const NoVendorSpendComponent: React.FC<NoVendorSpendProps> = ({
   data,

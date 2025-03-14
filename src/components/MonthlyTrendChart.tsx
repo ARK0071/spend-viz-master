@@ -66,7 +66,7 @@ const MonthlyTrendChart: React.FC<MonthlyTrendChartProps> = ({
                 <Line 
                   type="monotone" 
                   dataKey="total" 
-                  stroke="#0E5A8A" 
+                  stroke="#013B80" 
                   strokeWidth={2} 
                   activeDot={{ r: 8 }}
                   name="Total Spend"
