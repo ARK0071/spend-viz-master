@@ -12,17 +12,26 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface FiltersProps {
   onDateRangeChange: (range: { from?: Date; to?: Date }) => void;
   onDisplayMillionsToggle: (showMillions: boolean) => void;
   showMillions: boolean;
+  onDataSourceChange?: (dataSource: string) => void;
 }
 
 const Filters: React.FC<FiltersProps> = ({
   onDateRangeChange,
   onDisplayMillionsToggle,
   showMillions,
+  onDataSourceChange,
 }) => {
   const [date, setDate] = useState<{
     from?: Date;
@@ -74,9 +83,22 @@ const Filters: React.FC<FiltersProps> = ({
                   selected={date}
                   onSelect={handleSelect}
                   numberOfMonths={2}
+                  className="pointer-events-auto"
                 />
               </PopoverContent>
             </Popover>
+            
+            <Select onValueChange={(value) => onDataSourceChange?.(value)}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Data Source" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Sources</SelectItem>
+                <SelectItem value="bseg">BSEG</SelectItem>
+                <SelectItem value="ap">AP</SelectItem>
+                <SelectItem value="manual">Manual</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
         

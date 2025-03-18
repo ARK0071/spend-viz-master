@@ -24,7 +24,7 @@ const DataSourceChart: React.FC<DataSourceChartProps> = ({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Spend by Data Source</CardTitle>
+        <CardTitle>Spend by Data Source Over Time</CardTitle>
       </CardHeader>
       <CardContent>
         {isLoading ? (

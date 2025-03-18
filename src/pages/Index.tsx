@@ -4,10 +4,11 @@ import Header from "@/components/Header";
 import Filters from "@/components/Filters";
 import MonthlySpendTable from "@/components/MonthlySpendTable";
 import TopVendorsTable from "@/components/TopVendorsTable";
-import NoVendorSpend from "@/components/NoVendorSpend";
+import DataSourceBreakdown from "@/components/DataSourceBreakdown";
 import DataSourceChart from "@/components/DataSourceChart";
 import MonthlyTrendChart from "@/components/MonthlyTrendChart";
 import VendorPieChart from "@/components/VendorPieChart";
+import GLDescriptionBreakdown from "@/components/GLDescriptionBreakdown";
 import { useMonthlySpendData, useTopVendors, useNoVendorSpend } from "@/hooks/use-spend-data";
 import { toast } from "@/components/ui/use-toast";
 import { formatCurrency } from '@/services/api';
@@ -16,6 +17,7 @@ import { DateRange } from "react-day-picker";
 const Index = () => {
   const [showMillions, setShowMillions] = useState(true);
   const [dateRange, setDateRange] = useState<DateRange | undefined>();
+  const [dataSource, setDataSource] = useState<string>("all");
   
   // Convert date range to string format for API filtering
   const dateFilters = {
@@ -36,6 +38,15 @@ const Index = () => {
   // Handle display format toggle
   const handleDisplayToggle = (showMillions: boolean) => {
     setShowMillions(showMillions);
+  };
+  
+  // Handle data source filter changes
+  const handleDataSourceChange = (source: string) => {
+    setDataSource(source);
+    toast({
+      title: "Data Source Filter Applied",
+      description: `Showing data for ${source === 'all' ? 'all sources' : source.toUpperCase()}`,
+    });
   };
   
   // Handle export action
@@ -74,12 +85,13 @@ const Index = () => {
       <Header onExport={handleExport} />
       
       <main className="flex-1 dashboard-container">
-        <h1 className="text-3xl font-bold mb-6 text-center text-brand-blue">Data Validation Summary</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center text-[#013B80]">Data Validation Summary</h1>
         
         <Filters
           onDateRangeChange={handleDateRangeChange}
           onDisplayMillionsToggle={handleDisplayToggle}
           showMillions={showMillions}
+          onDataSourceChange={handleDataSourceChange}
         />
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -104,7 +116,7 @@ const Index = () => {
             />
           </div>
           <div>
-            <NoVendorSpend 
+            <DataSourceBreakdown 
               data={noVendorData} 
               isLoading={isLoadingNoVendor}
               showMillions={showMillions}
@@ -112,7 +124,7 @@ const Index = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div className="md:col-span-2">
             <TopVendorsTable 
               data={vendorData} 
@@ -127,6 +139,12 @@ const Index = () => {
               showMillions={showMillions}
             />
           </div>
+        </div>
+        
+        <div className="mb-6">
+          <GLDescriptionBreakdown 
+            showMillions={showMillions} 
+          />
         </div>
       </main>
     </div>
